@@ -1,6 +1,8 @@
 import { Section } from "../pages/Home";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getExpenses } from "../lib/api/expense";
 
 const ExpenseItemList = styled.div`
   display: flex;
@@ -47,7 +49,7 @@ const ExpenseDetails = styled.div`
   span {
     &:first-child {
       margin-bottom: 5px;
-      color: #666;
+      color: #727272;
       font-size: 14px;
     }
 
@@ -60,8 +62,18 @@ const ExpenseDetails = styled.div`
   }
 `;
 
-export default function ExpenseList({ expenses }) {
+export default function ExpenseList() {
   const navigate = useNavigate();
+
+  const {
+    data: expenses = [],
+    isLoading,
+    error,
+  } = useQuery({ queryKey: ["expense"], queryFn: getExpenses });
+
+  if (isLoading) {
+    return <div>로딩중 입니다...</div>;
+  }
 
   return (
     <Section>
