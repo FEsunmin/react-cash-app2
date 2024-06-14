@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const JSON_SERVER_HOST = "https://veiled-serious-reptile.glitch.me";
+const JSON_SERVER_HOST = "https://helpful-aback-balmoral.glitch.me";
 
 export const getExpenses = async () => {
   try {
