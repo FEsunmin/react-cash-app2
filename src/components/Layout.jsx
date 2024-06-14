@@ -13,14 +13,20 @@ const Navbar = styled.div`
 `;
 
 const NavItems = styled.div`
+  height: 50px;
   display: flex;
   align-items: center;
 `;
 
 const NavItem = styled(Link)`
+  width: 60px;
+  height: 50px;
   color: white;
   margin: 0 auto;
+  margin-left: 20px;
   text-decoration: none;
+  display: flex;
+  align-items: center;
 
   &:hover {
     text-decoration: underline;
@@ -35,8 +41,19 @@ const UserAvatar = styled.img`
 `;
 
 const UserName = styled.span`
+  height: 50px;
   color: white;
   margin-right: 20px;
+  display: flex;
+  align-items: center;
+`;
+
+const UserInfoFrame = styled.div`
+  width: 220px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const LogoutButton = styled.button`
@@ -46,6 +63,7 @@ const LogoutButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-right: 20px;
 
   &:hover {
     background-color: #cc0000;
@@ -88,15 +106,17 @@ const Layout = ({ user, setUser }) => {
           <NavItem to="/">Home</NavItem>
           <NavItem to="/profile">내 프로필</NavItem>
         </NavItems>
-        <div>
+        <UserInfoFrame>
           {user && (
             <>
-              <UserAvatar src={user.avatar} alt="avatar" />
-              <UserName>{user.nickname}</UserName>
+              <>
+                <UserAvatar src={user.avatar} alt="avatar" />
+                <UserName>{user.nickname}</UserName>
+              </>
               <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
             </>
           )}
-        </div>
+        </UserInfoFrame>
       </Navbar>
       <PageContainer>
         <Outlet />
